@@ -99,8 +99,8 @@ def _update_cl_milestone_docs(file_path, admin_name, version):
     
     file_path = _cl_path(file_path)
     date = datetime.datetime.now()
-    #today = str(date.day) + "/" + str(date.month) + "/" + str(date.year)
-    today = "25/02/2024"
+    today = str(date.day) + "/" + str(date.month) + "/" + str(date.year)
+    #today = "25/02/2024"
     
     text_to_write = "\\milestone{"+ str(version) +"}{"+ today +"}{"+ admin_name +"}"
     word_to_seek = "{changelog}"
@@ -180,7 +180,7 @@ def _update_html(src_path, version):
             index_of_line = i
             break
         
-    v_tag = "version\">V"
+    v_tag = "version\">v"
     index_v = line.find(v_tag)    
     end_index_v = line.find('</span>')
     len_old_v = end_index_v - index_v -len(v_tag) 
@@ -242,7 +242,7 @@ def _build_documents(doc_config_items : list, labels : list):
                 print("Nessuna lables per l'avanzamento del documento è stata trovata")
                 exit(1)
 
-        _update_html(ci.src_path, str(ci.version))
+        #_update_html(ci.src_path, str(ci.version))
         
         if(is_verbale and serial == None):
             serial = _find_serial_numb(code)
