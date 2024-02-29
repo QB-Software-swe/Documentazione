@@ -1,0 +1,46 @@
+name: CI Documentazione
+
+on:
+  pull_request:
+    branches: [ "develop" ]
+    types: 
+      - closed
+
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4.7.1
+        with:
+          python-version: '3.12' 
+
+      - name: Setup LaTeX tools
+        run: |
+          sudo apt update -y
+          sudo apt install -y texlive-latex-recommended texlive-latex-extra texlive-fonts-extra latexmk texlive-lang-italian
+    
+      - name: Check out repository (develop)
+        uses: actions/checkout@v3
+
+      - name: Build LaTeX Docs
+        run: |
+          echo $(gh pr view $PULL_REQUEST_NUMBER --json labels --jq '.labels.[].name')
+          labels="$(gh pr view $PULL_REQUEST_NUMBER --json labels --jq '.labels.[].name')"
+          python3 ./.github/build.py --labels "$(echo "$labels")"
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
+
+      - name: Update repo
+        run: |
+          git config --global user.name "QB Software [bot]"
+          git config --global user.email "qbsoftware.swe@gmail.com"
+          git add .
+          git commit -m "Build Docs from pull request #$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")"
+          git push origin
