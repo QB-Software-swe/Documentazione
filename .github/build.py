@@ -180,7 +180,7 @@ def _update_html(src_path, version):
             index_of_line = i
             break
         
-    v_tag = "version\">V"
+    v_tag = "version\">v"
     index_v = line.find(v_tag)    
     end_index_v = line.find('</span>')
     len_old_v = end_index_v - index_v -len(v_tag) 
