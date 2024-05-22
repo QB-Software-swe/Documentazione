@@ -36,6 +36,7 @@ PdQ;src/piano_di_qualifica/Piano_di_qualifica.tex;PB/Documenti_esterni;2.0.0;Tru
 PdP;src/piano_di_progetto/Piano_di_progetto.tex;PB/Documenti_esterni;2.0.0;True
 AdR;src/analisi_dei_requisiti/Analisi_dei_requisiti.tex;PB/Documenti_esterni;2.0.0;True
 Glossario;src/glossario/Glossario.tex;PB/Documenti_interni;2.0.0;True
-lpRTB;src/lettera_RTB/Lettera_di_presentazione.tex;RTB/Documenti_esterni;1.0.0;True
+lpRTB;src/lettera_RTB/Lettera_di_presentazione.tex;RTB;1.0.0;True
 ST;src/specifica_tecnica/Specifica_tecnica.tex;PB/Documenti_esterni;1.0.0;True
 MU;src/manuale_utente/Manuale_utente.tex;PB/Documenti_esterni;1.0.0;True
+lpPB;src/lettera_PB/Lettera_di_presentazione.tex;PB;1.0.0;True
